@@ -13,7 +13,11 @@
     "module": "esnext", // 模板化
     "removeComments": false, // 转换成 JS 时，从 TS 文件中删除所有注释
     "sourceMap": false, // 禁用 sourceMap
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@vue/*": ["packages/*/src"]
+    }
     // "forceConsistentCasingInFileNames": true,
     // "skipLibCheck": true
   },

@@ -10,7 +10,7 @@ export default [
         sourcemap: true,
         file: './packages/vue/dist/vue.js', // 输出路径
         format: 'iife', // 生成文件的格式
-        nmae: 'Vue' // 全局变量名
+        name: 'Vue' // 全局变量名
       }
     ],
     // 插件
