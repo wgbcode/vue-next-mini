@@ -7,10 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="name"></div>
+    <div id="age"></div>
     <script>
-        const {reactive} = Vue
-        console.log(reactive)
+        const {reactive,effect} = Vue
+        const nameObj = reactive({name:'张三'})
+        const ageObj = reactive({age:18})
+        effect(()=>{
+            document.querySelector('#name').innerText = nameObj.name
+            document.querySelector('#age').innerText = ageObj.age
+        })
+        setTimeout(()=>{
+            nameObj.name = '李四'
+            ageObj.age = 28
+        },3000)
     </script>
 </body>
 </html>

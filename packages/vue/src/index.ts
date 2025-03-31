@@ -1,2 +1,2 @@
 // 导出所有项目的 API
-export { reactive } from '@vue/reactivity'
+export { reactive, effect } from '@vue/reactivity'
