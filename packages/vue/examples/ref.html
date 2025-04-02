@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="name"></div>
+    <div id="age"></div>
+    <script>
+        const {ref,effect} = Vue
+        const obj = ref({name:'张三'})
+        const age = ref(18)
+        effect(()=>{
+            document.querySelector('#name').innerText = obj.value.name
+            document.querySelector('#age').innerText = age.value
+        })
+        setTimeout(()=>{
+            obj.value = {name:'李四'} // 触发 ref 中的 Setter
+            age.value = 28
+        },2000)
+        setTimeout(()=>{
+            obj.value.name = '王五'// 触发 ref 中的 Getter 和 reactive 中的 Setter
+        },4000)
+    </script>
+</body>
+</html>
