@@ -109,12 +109,13 @@ var Vue = (function (exports) {
         });
         return RefImpl;
     }());
-    var ref = function (rawValue) {
+    var ref = function (rawValue, isShallow) {
+        if (isShallow === void 0) { isShallow = false; }
         // 如果 ref 参数传入的是一个 RefImpl，则返回它本身
         if (rawValue === null || rawValue === void 0 ? void 0 : rawValue._v_isRef) {
             return rawValue;
         }
-        return new RefImpl(rawValue, false);
+        return new RefImpl(rawValue, isShallow);
     };
 
     exports.effect = effect;

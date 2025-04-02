@@ -28,10 +28,14 @@ class RefImpl {
   }
 }
 
-export const ref = (rawValue: any) => {
+export const ref = (rawValue: any, isShallow = false) => {
   // 如果 ref 参数传入的是一个 RefImpl，则返回它本身
   if (rawValue?._v_isRef) {
     return rawValue
   }
-  return new RefImpl(rawValue, false)
+  return new RefImpl(rawValue, isShallow)
+}
+
+export const shallowRef = (rawValue: any) => {
+  return ref(rawValue, true)
 }
