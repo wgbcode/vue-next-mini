@@ -14,7 +14,7 @@
         const obj = ref({name:'张三'})
         const age = ref(18)
         effect(()=>{
-            document.querySelector('#name').innerText = obj.value.name
+            document.querySelector('#name').innerText = obj.value.name // 同时触发 ref 和 reactive 中的 Getter
             document.querySelector('#age').innerText = age.value
         })
         setTimeout(()=>{

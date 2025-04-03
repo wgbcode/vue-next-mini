@@ -1,5 +1,5 @@
 import { isObject } from '@vue/shared'
-import { addEffectFn, ReactiveEffect } from './effect'
+import { addEffectFn, ReactiveEffect, triggerEffect } from './effect'
 import { reactive } from './reactive'
 
 // 普通对象返回自身，对象转换成 reactive
@@ -9,7 +9,7 @@ const toReactive = (value: any) => {
 
 // Ref 实现类
 class RefImpl {
-  private _v_isRef = true // 固定值，判断是否是 RefImpl
+  readonly _v_isRef = true // 固定值，判断是否是 RefImpl
   private dep = new Set<ReactiveEffect>() // 依赖保存到 Set 中
   private _value
   private _isShallow
@@ -24,7 +24,7 @@ class RefImpl {
   }
   set value(newValue) {
     this._value = this._isShallow ? newValue : toReactive(newValue)
-    this.dep.forEach(effect => effect.run()) // 触发依赖
+    this.dep.forEach(effect => triggerEffect(effect)) // 触发依赖
   }
 }
 
